@@ -10,8 +10,10 @@ import {
   CardActions,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 export default function ProductCard({ product }) {
+  const { addToCart } = useCart();
   return (
     <Card>
       <CardMedia
@@ -40,7 +42,11 @@ export default function ProductCard({ product }) {
         >
           View Details
         </Button>
-        <Button variant="contained" size="small">
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => addToCart(product)}
+        >
           Add to Cart
         </Button>
       </CardActions>

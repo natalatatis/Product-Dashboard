@@ -12,8 +12,10 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import products from "../data/products";
+import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
+  const { addToCart } = useCart();
   const { id } = useParams(); // Get product ID from URL
   const navigate = useNavigate();
   const product = products.find((p) => p.id === parseInt(id));
@@ -46,7 +48,11 @@ export default function ProductDetail() {
           {product.description}
         </Typography>
       </CardContent>
-      <Button variant="contained" sx={{ m: 2 }}>
+      <Button
+        variant="contained"
+        sx={{ m: 2 }}
+        onClick={() => addToCart(product)}
+      >
         Add to Cart
       </Button>
     </Card>
